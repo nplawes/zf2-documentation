@@ -432,18 +432,19 @@ with some POST data. Testing this is surprisingly easy:
         $serviceManager->setService('Album\Model\AlbumTable', $albumTableMock);
 
         $postData = array(
+            'id'     => 0,
             'title'  => 'Led Zeppelin III',
             'artist' => 'Led Zeppelin',
         );
         $this->dispatch('/album/add', 'POST', $postData);
         $this->assertResponseStatusCode(302);
 
-        $this->assertRedirectTo('/album');
+        $this->assertRedirectTo('/album/');
     }
 
 Here we test that when we make a POST request against the ``/album/add`` URL, the
 ``Album\Model\AlbumTable``'s ``saveAlbum`` will be called and after that we will
-be redirected back to the ``/album`` URL.
+be redirected back to the ``/album/`` URL.
 
 Running ``phpunit`` gives us the following output:
 
